@@ -1,7 +1,9 @@
 from enum import Enum
 from functools import wraps
 from math import floor
+from pathlib import Path
 
+import asyncio
 import yappi
 
 from func.heavy_computation import slow_generate_prime, generate_prime
@@ -64,3 +66,14 @@ async def run():
     await decorated()
     await yappi_profiled_async(prefix="cpu", clock_type=ClockType.CPU)(_run)()
     await yappi_profiled_async(prefix="wall", clock_type=ClockType.WALL)(_run)()
+
+
+def main():
+    # Prepare output path
+    Path('output').mkdir(exist_ok=True)
+
+    asyncio.get_event_loop().run_until_complete(run())
+
+
+if __name__ == '__main__':
+    main()
