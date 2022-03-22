@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 yappi = "*"
 asyncio = "*"
+line-profiler-pycharm = "*"
+line-profiler = "*"
 
 [dev-packages]
 
